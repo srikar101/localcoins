@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href={% url 'home' %}><h4><span>Local</span><span class="text-warning">Coins</span></h4></a>
+    <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href={% url 'dashboard' %}>Dashboard<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'buycrypto' %}>Buy</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href={% url 'sellcrypto' %}>Sell</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'getmyadd' %}>My Advertisements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'traderequest' %}>Trade Requests</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'wallet' %}>Wallets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'transactions' %}>Transactions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href={% url 'supportticket' %}>Support</a>
+        </li>
+        
+      </ul>
+      <ul class="navbar-nav pr-4 pl-4 justify-content-end">
+          <li class="mr-4">
+            <select class="form-control justify-content-end ml-4 mr-4 custom-select-sm">
+              <option selected>English</option>
+              <option>Telugu</option>
+              <option>Hindi</option>
+            </select>
+          </li>
+          <li class="nav-item  ml-4">
+            <a class="nav-link" href={% url 'logout' %}>Logout</a>
+          </li>
+          <li><i class="fa-solid fa-user"></i></li>
+      </ul>
+    </div>
+</nav>
+
+
+
+
+
+  
+<h3 class="text-center pt-4">My Dashboard </h3>
+<div class="row p-4">
+  <div class="col-md-2">
+    <div class="jumbotron bg-white  border text-center">
+      <i class="fa-solid fa-user fa-6x mb-4"></i>
+      <h4>{{my_details.username}}</h4>
+      <a class="btn" type="button mb-4" href="#">Profile Settings </a><br>
+      <a class="btn" type="button mb-4" href="#">Advertisements </a>
+    </div>
+    <div class="jumbotron bg-white text-left border">
+      <h4>Information </h4>
+      <form>
+        <div class="form-group row">
+          <label class="col-sm-6">Joined at :</label>
+          <input type="text" readonly class="form-control-plaintext col-sm-6" value={{my_details.created_datetime}}>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-10 col-form-label">Advertisements :</label>
+          <input type="text" readonly class="form-control-plaintext col-sm-2" value={{num_adv}}>
+        </div>
+        <div class="form-group row">
+          <label class="col-md-10 col-form-label">Trade requests :</label>
+          <input type="text" readonly class="form-control-plaintext col-sm-2" value="0">
+        </div>
+        <div class="form-group row">
+          <label class="col-md-11 col-form-label">Completed Trade :</label>
+          <input type="text" readonly class="form-control-plaintext col-sm-1" value="0">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="col-md-3 m-2">
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">USDT</div>
+      <div class="mt-2 text-center">
+        <h4>USDT</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">ETH</div>
+      <div class="mt-2 text-center">
+        <h4>ETH</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">BTC</div>
+      <div class="mt-2 text-center">
+        <h4>BTC</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 m-2">
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">XRP</div>
+      <div class="mt-2 text-center">
+        <h4>XRP</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">LTC</div>
+      <div class="mt-2 text-center">
+        <h4>LTC</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 m-2">
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">LUNA</div>
+      <div class="mt-2 text-center">
+        <h4>LUNA</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+    <div class="box bg-white mb-4 border row">
+      <div class="circle">DOGE</div>
+      <div class="mt-2 text-center">
+        <h4>DOGE</h4>
+        <h4>10,000.00000000</h4>
+      </div>
+    </div>
+  </div>
+    
+  
+   
+
+
+</div>
+
+  
+
+
+{% endblock  %}

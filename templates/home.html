@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href={% url 'home' %}><h4><span>{% trans 'Local' %}</span><span class="text-warning">{% trans 'Coins' %}</span></h4></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <ul class="navbar-nav justify-content-center">
+          <li class="nav-item active">
+            <a class="nav-link" href="home">{% trans 'Home' %}<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'buytoallusers' %}>{% trans 'Buy' %}</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href={% url 'selltoallusers' %}>
+              {% trans 'Sell' %}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'contact' %}>{% trans 'contact' %}</a>
+          </li>
+          <li class="dropdown default-dropdown">
+            <form method="POST" action={% url 'set_language' %}>
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ redirect_to }}">
+              <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages  %}
+                <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %} selected {% endif %} >
+                  {{language.name_local}} ({{language.code}})
+                </option>
+                
+                {% endfor %}
+              </select>
+              <input type="submit" value="Go">
+            </form>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="{% trans 'Search' %}" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{% trans 'Search' %}</button>
+      </form>
+</nav>
+
+    
+
+<div class="container-fluid text-white" style="background-color: #332a52; height: 220vh; width: 200vh">
+  <div class="row mh-25 justify-content-center align-items-center">
+    <div class="col-6">
+      <h1>{% trans 'Exchange Your' %} <br> {% trans 'Cryptocurrencies' %} </h1>
+      <form class="form-inline">
+        <a href={% url 'login' %} class="btn btn-warning mr-3" role="button">{% trans 'Login' %}</a>
+        <a href={% url 'register' %} class="btn btn-warning ml-3" role="button">{% trans 'Register' %}</a>
+      </form>
+    </div>
+
+    <div class="col col-md-4">
+      <form class="p-3 m-3" method="POST" action={% url 'findoffers' %}>
+        {% csrf_token %}
+        <h4>{% trans 'Find Your Offers' %}</h4>
+        <div class="justify-content-center">
+          <select class="form-control form-select mt-3" name="type">
+            <option>{% trans "select type" %}</option>
+            <option>{% trans "Buy" %}</option>
+            <option>{% trans "Sell" %}</option>
+          </select>
+          <select class="form-control mt-3 mb-3" name="cryptocurrency">
+            <option>{% trans "select crypto currency" %}</option>
+            <option>{% trans "BTC" %}</option>
+            <option>{% trans "ETH" %}</option>
+            <option>{% trans "USDT" %}</option>
+            <option>{% trans "DOGE" %}</option>
+            <option>{% trans "XMP" %}</option>
+          </select>
+          <select class="form-control mt-3 mb-3" name="paymentmethod">
+            <option>{% trans "select payment method" %}</option>
+            <option>{% trans "Payeer" %}</option>
+            <option>{% trans "Perfect money" %}</option>
+            <option>{% trans "Bank Wire" %}</option>
+            <option>{% trans "PayTM" %}</option>
+          </select>
+          <select class="form-control mt-3 mb-3" name="currency">
+            <option>{% trans "select currency" %}</option>
+            <option>{% trans "GBP" %}</option>
+            <option>{% trans "INR" %}</option>
+            <option>{% trans "NGN" %}</option>
+            <option>{% trans "USD" %}</option>
+            <option>{% trans "BDT" %}</option>
+            <option>{% trans "JPY" %}</option>
+            <option>{% trans "EUR" %}</option>
+          </select>
+          <input class ="form-control mt-3 mb-3" placeholder="preferred amount(optional)" type="text" />
+          <button class="btn bg-warning ml-3 mt-3 " type="submit">{% trans "Find Offers" %}</button>
+        </div>  
+      </form>
+
+    </div>
+  </div>
+
+  
+  <div class="d-flex flex-row mt-4 justify-content-center">
+    <div class="col-md-12 text-center">
+      <h4>What Our Client Say About Us</h4>
+      <p>We have done some awesome works and we always care for our clients and see <br> whats their opinion about us</p>
+    </div>
+  </div>
+  
+  <div class="d-flex h-25 flex-row justify-content-center">
+    <div class="col-md-3 ml-4 border border-secondary">
+      <p class="mt-4">This is the best for crypto exchange among other features.</p><br>
+      <h4 class="text-center">Srikar </h4>
+    </div>
+    <div class="col-md-3  mx-3 border border-secondary">
+      <p class="mt-4">This is the best fr crypto exchange among other features.</p>
+      <h4 class="text-center">Srikar </h4>
+    </div>
+    <div class="col-md-3 mx-3 border border-secondary">
+      <p class="mt-4">This is the best fr crypto exchange among other features.</p>
+      <h4 class="text-center">Srikar </h4>
+    </div>
+  </div>
+
+  <hr class="bg-secondary my-4" />
+
+  <div class="d-flex flex-row my-4 h-25 align-items-center">
+    <div class="col-md-9">
+      <h4>Welcome to the peer-to-peer finance revolution</h4>
+      <p>Trade cryptocurrency globally, Multiple payment methods, Free wallet, And much more right here.</p>
+    </div>
+    <div class="col-md-3">
+      <a class="btn btn-warning" type="button" href={% url 'login' %}>Get Started </a>
+    </div>
+  </div>
+
+  <hr class="bg-secondary" />
+  <div class="d-flex flex-row my-4 h-15 align-items-center">
+    <div class="col text-center">
+      <h4><span>Local</span><span class="text-warning">Coins</span></h4>
+      <p>Lorem ipsum chsjdbsj cvsdahcds sbsajka asbjksabas asvhsjbskas</p>
+    </div>
+  </div>
+  <hr class="bg-secondary" />
+  <div class="row">
+    <div class="col-md-9">
+      <p>Copyright c 2021 | All Right Reserved</p>
+    </div>
+    <div class="col-md-3 text-right">
+      <a class="btn text-white d-inline" href="" type="button">Terms of service</a>
+      <a class="btn text-white d-inline" href="">Privacy policy</a>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

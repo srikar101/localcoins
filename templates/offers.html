@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href={% url 'home' %}><h4><span>Local</span><span class="text-warning">Coins</span></h4></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <ul class="navbar-nav justify-content-center">
+          <li class="nav-item active">
+            <a class="nav-link" href={% url 'home' %}>Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'home' %}>Buy</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link">
+              Sell
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'home' %}>Contact</a>
+          </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+</nav>
+
+    
+
+<div class="container-fluid">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-6">
+      <h1>Exchange Your <br> cryptocurrencies </h1>
+      <form class="form-inline">
+        <a href={% url 'login' %} class="btn btn-warning mr-3" role="button">Login</a>
+        <a href={% url 'register' %} class="btn btn-warning ml-3" role="button">Register</a>
+      </form>
+    </div>
+
+    <div class="col col-md-4">
+      <form class="p-3 m-3">
+        <h4>Find Your Offers</h4>
+        <div class="justify-content-center">
+          <select class="form-control mt-3">
+            <option>Buy</option>
+            <option>Sell</option>
+          </select>
+          <select class="form-control mt-3 mb-3">
+            <option>BTC</option>
+            <option>ETH</option>
+            <option>USDT</option>
+            <option>DOGE</option>
+            <option>XMP</option>
+          </select>
+          <select class="form-control mt-3 mb-3">
+            <option>Payeer</option>
+            <option>Perfect money</option>
+            <option>Bank wire</option>
+            <option>PayTM</option>
+          </select>
+          <select class="form-control mt-3 mb-3">
+            <option>Dollars</option>
+            <option>Rupees</option>
+          </select>
+          <input class ="form-control mt-3 mb-3" placeholder="preferred amount(optional)" type="text" />
+          <a href={% url 'findoffers' %} class="btn bg-warning ml-3 mt-3 " type="button">Find Offers</a>
+        </div>  
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+{% if t == "Buy" %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Seller</th>
+        <th>Payment Method</th>
+        <th>Rate</th>
+        <th>Limits</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in post  %}
+        <tr>
+            <td>{{i.user.username}}</td>
+            <td>{{i.payment_method}}</td>
+            <td>{{i.rate}}</td>
+            <td>{{i.min_limit}}-{{i.max_limit}}{{i.currency}}</td>
+            <td><a class="btn btn-warning" href="">Buy</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% elif t == "Sell" %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Buyer</th>
+        <th>Payment Method</th>
+        <th>Rate</th>
+        <th>Limits</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in post  %}
+        <tr>
+            <td>{{i.user.username}}</td>
+            <td>{{i.payment_method}}</td>
+            <td>{{i.rate}}</td>
+            <td>{{i.min_limit}}-{{i.max_limit}}{{i.currency}}</td>
+            <td><a class="btn btn-warning" href="">Sell</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endif %}
+
+
+
+
+
+
+{% endblock  %}

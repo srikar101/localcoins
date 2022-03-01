@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href={% url 'home' %}><h4><span>Local</span><span class="text-warning">Coins</span></h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href={% url 'dashboard' %}>Dashboard<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'buycrypto' %}>Buy</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href={% url 'sellcrypto' %}>Sell</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'getmyadd' %}>My Advertisements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'traderequest' %}>Trade Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'wallet' %}>Wallets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'transactions' %}>Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'supportticket' %}>Support</a>
+      </li>
+      
+    </ul>
+    <ul class="navbar-nav pr-4 pl-4 justify-content-end">
+        <li class="mr-4">
+          <select class="form-control justify-content-end ml-4 mr-4 custom-select-sm">
+              <option selected>English</option>
+              <option>Telugu</option>
+              <option>Hindi</option>
+            </select>
+          </li>
+          <li class="nav-item  ml-4">
+              <a class="nav-link" href={% url 'logout' %}>Logout</a>
+          </li>
+          <li><i class="fa-solid fa-user"></i></li>
+      </ul>
+  </div>
+</nav>
+
+
+
+{% endblock  %}

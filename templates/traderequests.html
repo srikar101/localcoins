@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href={% url 'home' %}><h4><span>Local</span><span class="text-warning">Coins</span></h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href={% url 'dashboard' %}>Dashboard<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'buycrypto' %}>Buy</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href={% url 'sellcrypto' %}>Sell</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'getmyadd' %}>My Advertisements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'traderequest' %}>Trade Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'wallet' %}>Wallets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'transactions' %}>Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'supportticket' %}>Support</a>
+      </li>
+      
+    </ul>
+    <ul class="navbar-nav pr-4 pl-4 justify-content-end">
+        <li class="mr-4">
+          <select class="form-control justify-content-end ml-4 mr-4 custom-select-sm">
+              <option selected>English</option>
+              <option>Telugu</option>
+              <option>Hindi</option>
+            </select>
+          </li>
+          <li class="nav-item  ml-4">
+              <a class="nav-link" href={% url 'logout' %}>Logout</a>
+          </li>
+          <li><i class="fa-solid fa-user"></i></li>
+      </ul>
+  </div>
+</nav>
+
+
+
+
+
+<form class="ml-4">
+    <div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Rate</label>
+            <div class="col-sm-10">
+              <input type="text" readonly class="form-control-plaintext" value={{post.rate}}{{post.currency}}/{{post.crypto_currency}}>
+            </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Payment Method</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value={{post.payment_method}}>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">User</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value={{post.send_user}}>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Trade Limits</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value={{post.min_limit}}-{{post.max_limit}}>
+              </div>
+          </div>
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Payment Window</label>
+              <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" value={{post.payment_window}}>
+              </div>
+          </div>
+          <h3>How much you wish {{post.type}}?</h3>
+          <div class="form-group">
+              <label class="col-sm-2">{{post.currency}}</label>
+              <div class="col-sm-5">
+                <input type="number" class="form-control" placeholder="0.00">
+              </div>
+          </div>
+          <div class="form-group">
+              <label class="col-sm-2">{{post.crypto_currency}}</label>
+              <div class="col-sm-5">
+                <input type="number" class="form-control" placeholder="0.00">
+              </div>
+          </div>
+          <div class="col-5">
+            <textarea type="text" class="form-control" placeholder="write your contact message and other information to the trade here" ></textarea>
+          </div>
+
+        </div>
+        <div>
+            <div class="form-group">
+                <label class="col-sm-2">Terms of trade with {{post.send_user}}</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" value={{post.terms_of_trade}}>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2"> Payment details of {{post.send_user}}</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly class="form-control-plaintext" value={{post.payment_details}}>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-warning col-10">Send Trade Requests</button>
+</form>
+
+
+
+{% endblock  %}

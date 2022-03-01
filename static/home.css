@@ -1,0 +1,10 @@
+.home_page{
+    color: aliceblue;
+    margin-top: 200px;
+}
+
+.container-fluid{
+    margin: 0;
+    padding: 0;
+    background-color: midnightblue;
+}

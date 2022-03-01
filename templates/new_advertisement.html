@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href={% url 'home' %}><h4><span>Local</span><span class="text-warning">Coins</span></h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="dropdown" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href={% url 'dashboard' %}>Dashboard<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'buycrypto' %}>Buy</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href={% url 'sellcrypto' %}>Sell</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'getmyadd' %}>My Advertisements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'traderequest' %}>Trade Requests</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'wallet' %}>Wallets</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'transactions' %}>Transactions</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href={% url 'supportticket' %}>Support</a>
+      </li>
+      
+    </ul>
+    <ul class="navbar-nav pr-4 pl-4 justify-content-end">
+        <li class="mr-4">
+          <select class="form-control justify-content-end ml-4 mr-4 custom-select-sm">
+              <option selected>English</option>
+              <option>Telugu</option>
+              <option>Hindi</option>
+            </select>
+          </li>
+          <li class="nav-item  ml-4">
+              <a class="nav-link" href={% url 'logout' %}>Logout</a>
+          </li>
+          <li><i class="fa-solid fa-user"></i></li>
+      </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+<h3 class="text-center">New Advertisement </h3>
+<div class="text-right"><a href="get_myadvertisement" class="btn btn-secondary">My Advertisement</a></div>
+<form method="POST" action={% url 'postadd' %}>
+    {% csrf_token %}
+    <div class="row">
+        <div class='form-group ml-4 pl-4 pr-4'>
+            <label>I Want To Buy...</label>
+            <input type="text" class="form-control" name="type_of" placeholder="Buy">
+        </div>
+        <div class='form-group'>
+            <label>Crypto Currency</label>
+            <input type="text" class="form-control" name="cryptocurrency" placeholder="Bitcoin">
+        </div>
+    </div>
+    <div class="row">
+        <div class='form-group ml-4 pl-4 pr-4'>
+            <label>Fiat Payment Method</label>
+            <input type="text" class="form-control" name="paymentmethod" placeholder="Payeer">
+        </div>
+        <div class='form-group'>
+            <label>Currency</label>
+            <select class="form-control" name="currency">
+                <option>Select One</option>
+                <option>INR</option>
+                <option>NGN</option>
+                <option>USD</option>
+                <option>BDT</option>
+                <option>JPY</option>
+                <option>EUR</option>
+                <option>GBP</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class='form-group ml-4 pl-4 pr-4'>
+            <label>Margin</label>
+            <input type="number" class="form-control" name="margin" placeholder="0">
+        </div>
+        <div class='form-group'>
+            <label>Payment Window</label>
+            <input type="text" class="form-control" name="paymentwindow" placeholder="200 Minutes">
+        </div>
+    </div>
+    <div class="row">
+        <div class='form-group ml-4 pl-4 pr-4'>
+            <label>Maximum Limit</label>
+            <input type="number" class="form-control" name="maxlimit" placeholder="0">
+        </div>
+        <div class='form-group'>
+            <label>Minimum Limit</label>
+            <input type="number" class="form-control" name="minlimit" placeholder="0">
+        </div>
+    </div>
+    <div class='form-group col-6 ml-4'>
+        <label>Price Equation</label>
+        <input type="number" class="form-control" name="priceequation" placeholder="0.00">
+    </div>
+    <div class='form-group col-6 ml-4'>
+        <label>Price Details</label>
+        <textarea class="form-control" name="paymentdetails" placeholder="Payment details" rows="3"></textarea>
+    </div>
+    <div class='form-group col-6 ml-4'>
+        <label>Terms of Trade</label>
+        <textarea class="form-control" name="termsoftrade" placeholder="Terms of Trade" rows="3"></textarea>
+    </div>
+    <button class="btn btn-warning col-6 ml-4 text-white ">Publish</button>
+  </form>
+
+
+
+{% endblock %}
