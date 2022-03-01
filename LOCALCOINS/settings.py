@@ -147,10 +147,10 @@ USE_TZ = True
 
 # EMAIL CONFIG 
 
-EMAIL_FROM_USER = 'uresrikar101@gmail.com'
+EMAIL_FROM_USER = ''
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'uresrikar101@gmail.com'
-EMAIL_HOST_PASSWORD = 'lbitohsysedghtmv'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 
