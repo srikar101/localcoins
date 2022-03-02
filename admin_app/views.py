@@ -1,3 +1,4 @@
+import email
 from pdb import post_mortem
 from django.shortcuts import redirect, render
 from account.models import Register
@@ -55,6 +56,24 @@ def trade_request(request):
 def all_users(request):
     post = Register.objects.all()
     return render(request, 'all_users.html', {'post': post})
+
+def edit_user(request,id):
+    obj = Register.objects.get(id=id)
+    if request.method == "POST":
+        username = request.POST['name']
+        email = request.POST['email']
+        mobile_number = request.POST['mobile_number']
+        country = request.POST['country']
+        created_datetime = request.POST['created_datetime']
+        Register.objects.filter(id=id).update(username=username,email=email,mobile_number=mobile_number,
+        country=country,created_datetime=created_datetime)
+        return redirect('allusers')
+    return render(request, 'edit_user.html', {'obj': obj})
+
+def delete_user(request,id):
+    obj = Register.objects.get(id=id)
+    obj.delete()
+    return redirect('allusers')
 
 def all_advertisement(request):
     post = Advertisements.objects.all()

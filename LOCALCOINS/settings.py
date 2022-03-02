@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'paymentwindows',
     'account',
     'contact',
-    'django_email_verification',
     'admin_app',
     'all_extensions_languagemanager',
     'policypages_managesection',

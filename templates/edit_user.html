@@ -145,51 +145,34 @@
                     <li class="d-inline"><input type="text" placeholder="Name/Code"/><span><button class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button></span></li>
                 </div>
             </ul>
-
-            <div>
-                <table class="table table-hover table-bordered">
-                    <thead class="bg-primary text-white">
-                      <tr>
-                        <th>User</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Country</th>
-                        <th>Joinded At</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {% for i in post %}
-                        
-                        <tr>
-                            <td name="name">{{i.username}}</td>
-                            <td name="email">{{i.email}}</td>
-                            <td name="mobile_number">{{i.mobile_number}}</td>
-                            <td name="country">{{i.country}}</td>
-                            <td name="created datetime">{{i.created_datetime}}</td>
-                            <td>
-                              <a class="btn btn-primary" href={% url 'edituser' i.id %}><i class="fa-solid fa-pen-to-square"></i></a>
-                              <a class="btn btn-danger" href={% url 'deleteuser' i.id %}><i class="fa-solid fa-trash"></i></a>
-                            </td>
-                        </tr>
-                        
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+            <h4 class="text-center">edit user</h4>
+            <form method="POST" action={% url 'edituser' obj.id %}>
+                {% csrf_token %}
+                <div class="form-group text-center">
+                    <label>Nmae</label><br />
+                    <input type="text"  name="name" value="{{obj.username}}" /> 
+                </div>
+                <div class="form-group text-center">
+                    <label>Email</label><br />
+                    <input type="text"  name="email" value="{{obj.email}}" /> 
+                </div>
+                <div class="form-group text-center">
+                    <label>Mobile Number</label><br />
+                    <input type="text"  name="mobile_number" value="{{obj.mobile_number}}" /> 
+                </div>
+                <div class="form-group text-center">
+                    <label>Country</label><br />
+                    <input type="text"  name="country" value="{{obj.country}}" /> 
+                </div>
+                <div class="form-group text-center">
+                    <label>Created Datetime</label><br />
+                    <input type="text"  name="created_datetime" value="{{obj.created_datetime}}" /> 
+                </div>
+                <div class="text-center"><button class="btn btn-warning text-center">Submit</button></div>
+            </form>
 
         </div>
     </div>
-
-    
-
-
 </div>
 
-
-
-
-
-
-
-{% endblock  %}
+{% endblock %}
