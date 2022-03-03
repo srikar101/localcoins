@@ -40,6 +40,7 @@ urlpatterns += i18n_patterns(
     path('', include('wallet.urls')),
     path('', include('transactions.urls')),
     path('', include('support.urls')),
+    path('traderequest/', include('payment_gateway.urls')),
     path('adminpage/', include('all_extensions_languagemanager.urls')),
     path('adminpage/', include('emailtemplates_faq.urls')),
     path('adminpage/', include('policypages_managesection.urls')),

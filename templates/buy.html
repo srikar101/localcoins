@@ -68,18 +68,14 @@
     </thead>
     <tbody>
         {% for i in post %}
-        <form method="POST" action="#">
-          {% csrf_token %}
-          <tr>
-            <td name="username">{{i.user}}</td>
-            <td name="cryptocurrency">{{i.crypto_currency}}</td>
-            <td name="paymentmethod">{{i.payment_method}}</td>
-            <td name="rate">{{i.rate}}</td>
-            <td name="limits">{{i.min_limit}}-{{i.max_limit}}{{i.currency}}</td>
-            <td><a class="btn btn-warning" type="submit">Buy</a></td>
-          </tr>
-
-        </form>
+        <tr>
+          <td>{{i.user}}</td>
+          <td>{{i.crypto_currency}}</td>
+          <td>{{i.payment_method}} </td>
+          <td>{{i.rate}}</td>
+          <td>{{i.min_limit}}-{{i.max_limit}}{{i.currency}}</td>
+          <td><a class="btn btn-warning" href={% url 'userbuyrequest' i.user %} type="submit">Buy</a></td>
+        </tr>
         
         
         
